@@ -9,6 +9,15 @@ const productSchema = mongoose.Schema({
   tags: Array
 })
 
+// Método listar
+productSchema.statics.allProducts = (filter, start, limit) => {
+  const query = Product.find(filter)
+  query.skip(start)
+  query.limit(limit)
+
+  return query.exec()
+}
+
 // Crear el modelo del producto
 const Product = mongoose.model('Product', productSchema)
 
