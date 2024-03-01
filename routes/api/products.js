@@ -6,9 +6,17 @@ const Product = require('../../models/Product')
 // Devuelve una lista de productos
 router.get('/', async function(req, res, next) {
   try {
+    // Filtros
     const filter = {}
     const filterByName = req.query.name
     const filterByTag = req.query.tag
+    // Paginación
+    const skip = req.query.start
+    const limit = req.query.limit
+    // Ordenación
+    const sort = req.query.sort
+    // Field selection
+    const fields = req.query.fields
 
     if (filterByName) {
       filter.name = filterByName
@@ -18,7 +26,8 @@ router.get('/', async function(req, res, next) {
       filter.tag = filterByTag
     }
 
-    const products = await Product.find(filter)
+
+    const products = await Product.allProducts(filter, start, limit, sort, fields)
     res.json({ results: products });
   } catch (e) {
     next(e)

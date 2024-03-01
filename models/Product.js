@@ -2,18 +2,20 @@ const mongoose = require('mongoose')
 
 // Definiendo el esquema de productos
 const productSchema = mongoose.Schema({
-  name: String,
+  name: { type: String, index: true },
   isSelling: Boolean,
   price: Number,
   image: String,
-  tags: Array
+  tags: { type: Array, index: true }
 })
 
 // Método listar
-productSchema.statics.allProducts = (filter, start, limit) => {
+productSchema.statics.allProducts = (filter, start, limit, sort, fields) => {
   const query = Product.find(filter)
   query.skip(start)
   query.limit(limit)
+  query.sort(sort)
+  query.select(fields)
 
   return query.exec()
 }
