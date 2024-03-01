@@ -2,7 +2,8 @@ var express = require('express');
 var router = express.Router();
 const Product = require('../../models/Product')
 
-/* GET users listing. */
+// GET /api/products
+// Devuelve una lista de productos
 router.get('/', async function(req, res, next) {
   try {
     const products = await Product.find()
@@ -13,4 +14,64 @@ router.get('/', async function(req, res, next) {
   }
 });
 
+// GET /api/products/:id
+// Devuelve un producto
+router.get('/:id', async (req, res, next) => {
+  try {
+    const id = req.params.id
+
+    const product = await Product.findById(id)
+
+    res.json({ result: product })
+  } catch (e) {
+    next(e)
+  }
+})
+
+// PUT /api/product/:id (body)
+// Actualiza un producto
+router.put('/:id', async (req, res, next) => {
+  try {
+    const id = req.params.id
+    const data = req.body
+
+    const productUpdated = await Product.findByIdAndUpdate(id, data, { new: true })
+
+    res.json({ result: productUpdated })
+  } catch (e) {
+    next(e)
+  }
+})
+
+// POST /api/product (body)
+// Crea un producto nuevo
+router.post('/', async (req, res, next) => {
+  try {
+    const data = req.body
+
+    // Creamos una instancia del producto en memoria
+    const product = new Product(data)
+
+    // Lo persistimos en la BD
+    const productSaved = await product.save()
+
+    res.json({ result: productSaved })
+  } catch (e) {
+    next(e)
+  }
+})
+
+// DELETE /api/product/:id
+// Elimina un producto
+router.delete('/:id', async (req, res, next) => {
+  try {
+    const id = req.params.id
+
+    await Product.deleteOne({ _id: id })
+
+    res.json()
+  } catch (e) {
+    next(e)
+  }
+})
 module.exports = router;
