@@ -41,18 +41,19 @@ GET /api/products
 
 ```json
 {
-    "results": [
-        {
-            "_id": "65e1bc886bba9b304467d641",
-            "name": "PlayStation 5",
-            "isSelling": true,
-            "price": 100,
-            "tags": [
-                "['console', 'Sony']"
-            ],
-            "__v": 0
-        }
-    ]
+  "results": [
+    {
+      "_id": "65e1c674e38cc3a9db3c99fb",
+      "name": "PlayStation 5",
+      "isSelling": true,
+      "price": 100,
+      "image": "playstation5.png",
+      "tags": [
+          "console",
+          "sony"
+      ],
+    }
+  ]
 }
 ```
 
@@ -68,6 +69,7 @@ Product {
   name: String,
   isSelling: Boolean,
   price: Number,
+  image: String,
   tags: Array
 }
 ```
@@ -79,6 +81,7 @@ Product {
   name: String,
   isSelling: Boolean,
   price: Number,
+  image: String,
   tags: Array
 }
 ```
