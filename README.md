@@ -56,6 +56,11 @@ GET /api/products
 }
 ```
 
+#### Filtros
+Filtrar por nombre de producto: `GET /api/products?name=<TEXT>`
+
+Filtrar por una etiqueta: `GET /api/products?tag=<TEXT>`
+
 ### Add new product
 POST /api/products
 ```
