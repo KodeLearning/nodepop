@@ -28,9 +28,21 @@
 
 ## Development
 
+Install dependencies.
+```sh
+npm install
+```
+
+Initialize the database:
+* Warning, the next command deletes all contents of the database!!!!
+
+```sh
+npm run init-db
+```
+
 To start the application in development mode use:
 
-```js
+```sh
 npm run dev
 ```
 

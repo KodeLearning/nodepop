@@ -6,7 +6,7 @@ const productSchema = mongoose.Schema({
   isSelling: Boolean,
   price: Number,
   image: String,
-  tags: { type: Array, index: true }
+  tags: { type: [String], index: true },
 })
 
 // Método listar
