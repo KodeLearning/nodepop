@@ -1,9 +1,11 @@
-var express = require('express');
-var router = express.Router();
+var express = require('express')
+var router = express.Router()
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Playstation 5', type: 'Se Busca', price: '200€', tags: ['gaming', 'console'], image: 'https://cdn.computerhoy.com/sites/navi.axelspringer.es/public/media/image/2023/07/sony-playstation-5-1689016881412-3080326.jpg' });
-});
+router.get('/', async function (req, res, next) {
+  const data = await fetch('http://192.168.1.129:3000/api/products?start=0&limit=3')
+  const products = await data.json()
+  res.render('index', { products: products.results })
+})
 
-module.exports = router;
+module.exports = router

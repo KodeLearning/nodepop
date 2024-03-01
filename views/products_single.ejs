@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Nodepop :: Product</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <h1><%= product.name %></h1>
+    <h2><%= (product.isSelling) ? 'Se vende por ' + product.price + '€' : 'Se busca por ' + product.price + '€' %></h2>
+    <img src="/images/<%=product.image%>" />
+    <p><%=product.tags%></p>
+  </body>
+</html>

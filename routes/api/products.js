@@ -1,17 +1,17 @@
-var express = require('express');
-var router = express.Router();
+var express = require('express')
+var router = express.Router()
 const Product = require('../../models/Product')
 
 // GET /api/products
 // Devuelve una lista de productos
-router.get('/', async function(req, res, next) {
+router.get('/', async function (req, res, next) {
   try {
     // Filtros
     const filter = {}
     const filterByName = req.query.name
     const filterByTag = req.query.tag
     // Paginación
-    const skip = req.query.start
+    const start = req.query.start
     const limit = req.query.limit
     // Ordenación
     const sort = req.query.sort
@@ -26,13 +26,12 @@ router.get('/', async function(req, res, next) {
       filter.tag = filterByTag
     }
 
-
     const products = await Product.allProducts(filter, start, limit, sort, fields)
-    res.json({ results: products });
+    res.json({ results: products })
   } catch (e) {
     next(e)
   }
-});
+})
 
 // GET /api/products/:id
 // Devuelve un producto
@@ -94,4 +93,4 @@ router.delete('/:id', async (req, res, next) => {
     next(e)
   }
 })
-module.exports = router;
+module.exports = router
