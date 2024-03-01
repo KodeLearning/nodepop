@@ -5,7 +5,7 @@ const productSchema = mongoose.Schema({
   name: String,
   isSelling: Boolean,
   price: Number,
-  tags: [String]
+  tags: Array
 })
 
 // Crear el modelo del producto
