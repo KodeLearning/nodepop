@@ -33,3 +33,50 @@ To start the application in development mode use:
 ```js
 npm run dev
 ```
+
+## API
+
+### Product list
+GET /api/products
+
+```json
+{
+    "results": [
+        {
+            "_id": "65e1bc886bba9b304467d641",
+            "name": "PlayStation 5",
+            "isSelling": true,
+            "price": 100,
+            "tags": [
+                "['console', 'Sony']"
+            ],
+            "__v": 0
+        }
+    ]
+}
+```
+
+### Add new product
+POST /api/products
+```
+Product {
+  name: String,
+  isSelling: Boolean,
+  price: Number,
+  tags: Array
+}
+```
+
+## Update product
+PUT /api/products/<_id>
+```
+Product {
+  name: String,
+  isSelling: Boolean,
+  price: Number,
+  tags: Array
+}
+```
+
+## Delete product
+DELETE /api/products/<_id>
