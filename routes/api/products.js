@@ -6,8 +6,19 @@ const Product = require('../../models/Product')
 // Devuelve una lista de productos
 router.get('/', async function(req, res, next) {
   try {
-    const products = await Product.find()
+    const filter = {}
+    const filterByName = req.query.name
+    const filterByTag = req.query.tag
 
+    if (filterByName) {
+      filter.name = filterByName
+    }
+
+    if (filterByTag) {
+      filter.tag = filterByTag
+    }
+
+    const products = await Product.find(filter)
     res.json({ results: products });
   } catch (e) {
     next(e)
