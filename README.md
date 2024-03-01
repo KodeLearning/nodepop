@@ -62,6 +62,10 @@ Filtrar por nombre de producto: `GET /api/products?name=<TEXT>`
 
 Filtrar por una etiqueta: `GET /api/products?tag=<TEXT>`
 
+Filtrar usando paginación: `GET /api/products?start=<NUMBER>&limit=<NUMBER>`
+
+Ordenar por uno o más campos: `GET /api/products?sort=<DB_FIELD>`
+
 ### Add new product
 POST /api/products
 ```
