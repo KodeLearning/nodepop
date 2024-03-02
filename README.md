@@ -8,8 +8,8 @@
   - Paginación si es necesaria ✔
   - Filtro de anuncios por:
     - Etiqueta ✔
-    - Tipo de anuncio (Se vende o Se busca)
-    - Rango de precio (mínimo y máximo)
+    - Tipo de anuncio (Se vende o Se busca) ✔
+    - Rango de precio (mínimo y máximo) ✔
     - Nombre del artículo ✔
 - Listar las etiquetas ✔
 - Crear un anuncio ✔
@@ -76,9 +76,13 @@ Filtrar por nombre de producto: `GET /api/products?name=<TEXT>`
 
 Filtrar por una etiqueta: `GET /api/products?tag=<TEXT>`
 
+Filtrar por si se vende o no: `GET /api/products?isSelling=<BOOLEAN>`
+
 Filtrar usando paginación: `GET /api/products?start=<NUMBER>&limit=<NUMBER>`
 
 Ordenar por uno o más campos: `GET /api/products?sort=<DB_FIELD>`
+
+Filtrar por mínimo y/o máximo: `GET /api/products?min=<NUMBER>&max=<NUMBER>`
 
 ### Add new product
 

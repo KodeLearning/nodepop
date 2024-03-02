@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 // Definiendo el esquema de productos
 const productSchema = mongoose.Schema({
   name: { type: String, index: true },
-  isSelling: Boolean,
+  isSelling: { type: Boolean, index: true },
   price: Number,
   image: String,
   tags: { type: [String], index: true },
@@ -17,6 +17,7 @@ productSchema.statics.allProducts = (filter, start, limit, sort, fields) => {
   query.sort(sort)
   query.select(fields)
 
+  console.log(filter)
   return query.exec()
 }
 

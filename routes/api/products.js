@@ -10,6 +10,9 @@ router.get('/', async function (req, res, next) {
     const filter = {}
     const filterByName = req.query.name
     const filterByTag = req.query.tag
+    const filterByisSelling = req.query.isSelling
+    const filterByMinPrice = parseInt(req.query.min)
+    const filterByMaxPrice = parseInt(req.query.max)
     // Paginación
     const start = req.query.start
     const limit = req.query.limit
@@ -23,7 +26,23 @@ router.get('/', async function (req, res, next) {
     }
 
     if (filterByTag) {
-      filter.tag = filterByTag
+      filter.tags = filterByTag
+    }
+
+    if (filterByisSelling) {
+      filter.isSelling = filterByisSelling
+    }
+
+    if (filterByMinPrice && !filterByMaxPrice) {
+      filter.price = { $gte: filterByMinPrice }
+    }
+
+    if (filterByMaxPrice && !filterByMinPrice) {
+      filter.price = { $lte: filterByMaxPrice }
+    }
+
+    if (filterByMinPrice && filterByMaxPrice) {
+      filter.price = { $gt: filterByMinPrice, $lt: filterByMaxPrice }
     }
 
     const products = await Product.allProducts(filter, start, limit, sort, fields)
